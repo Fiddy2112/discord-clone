@@ -14,6 +14,43 @@ pnpm dev
 bun dev
 ```
 
+## Packages Frontend
+[nextjs](https://ui.shadcn.com/docs/installation/next)
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --eslint
+```
+
+[shadcn-ui](https://ui.shadcn.com/docs/installation/next)
+```bash
+npx shadcn-ui@latest init
+```
+
+[shadcn-ui/button](https://ui.shadcn.com/docs/components/button)
+```bash
+npx shadcn-ui@latest add button
+```
+
+[shadcn-ui/dropdown-menu](https://ui.shadcn.com/docs/components/dropdown-menu)
+```bash
+npx shadcn-ui@latest add dropdown-menu
+```
+
+[clerk](https://clerk.com/docs/quickstarts/nextjs)
+```bash
+npm install @clerk/nextjs
+```
+
+[@radix-ui/react-icons](https://www.radix-ui.com/icons)
+```bash
+npm install @radix-ui/react-icons
+```
+
+
+
+
+
+
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
