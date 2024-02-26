@@ -52,7 +52,12 @@ npm install prisma
 ```
 
 [i have using mongoDB Atlas for database](https://cloud.mongodb.com/)
+
 [setup mongodb for prisma](https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/mongodb/connect-your-database-typescript-mongodb)
+
+[upload image with Uploadthing](https://docs.uploadthing.com/getting-started)
+
+
 
 
 

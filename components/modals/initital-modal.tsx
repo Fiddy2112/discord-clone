@@ -8,12 +8,18 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
+import { FileUpload } from '@/components/file-upload';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+
 
 
 
 export const InitialModal = ()=> {
 
     const [isMounted,setIsMounted] = useState(false);
+
+    const router = useRouter()
 
     useEffect(()=> {
         setIsMounted(true);
@@ -39,7 +45,15 @@ export const InitialModal = ()=> {
     const isLoading = form.formState.isSubmitting;
 
     const onSubmit = async (values: z.infer<typeof formSchema>)=> {
-        console.log(values)
+        try{
+            await axios.post("/api/servers",values)
+
+           form.reset();
+           router.refresh();
+           window.location.reload();
+        }catch(err){
+            console.log(err);
+        }
     }
 
     if(!isMounted){
@@ -64,7 +78,21 @@ export const InitialModal = ()=> {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <div className='space-y-8 px-6'>
                         <div className='flex items-center justify-center text-center'>
-                            TODO: Image uplaod
+                            <FormField 
+                            control={form.control} 
+                            name="imageUrl"
+                            render={({field})=> (
+                                <FormItem>
+                                    <FormControl>
+                                        <FileUpload
+                                        endpoint="serverImage"
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                            />
                         </div>
 
                         <FormField
@@ -78,7 +106,7 @@ export const InitialModal = ()=> {
                                 <FormControl>
                                     <Input className='dark:bg-[#1e1f22] border-0 focus-visible:ring-0 dark:text-gray-400 focus-visible:ring-offset-0' placeholder='Enter server name' {...field} disabled={isLoading}/>
                                 </FormControl>
-                                <FormMessage/>
+                                <FormMessage className='text-rose-800'/>
                             </FormItem>
                         )}
                         />
