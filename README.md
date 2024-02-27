@@ -57,11 +57,24 @@ npm install prisma
 
 [upload image with Uploadthing](https://docs.uploadthing.com/getting-started)
 
+[axios](https://www.npmjs.com/package/axios)
+```bash
+npm i axios
+```
+
+[uuid](https://www.npmjs.com/package/uuid)
+```bash
+npm i uuid
+```
+
+** If `uuid` install with typescript **
+```bash
+npm i -D @types/uuid
+```
 
 
 
-
-
+##----------------------------------------------------------------------------------
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
