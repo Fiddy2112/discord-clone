@@ -5,7 +5,18 @@ const nextConfig = {
         domains: [ 
             'uploadthing.com',
             'utfs.io'
-        ]
+        ],
+        remotePatterns: [
+            {
+              protocol: 'https',
+              hostname: 'res.cloudinary.com',
+              pathname: '**',
+            },
+            {
+              protocol:'https',
+              hostname:'images.domains'
+            }
+          ],
         
     }
 };

@@ -45,6 +45,11 @@ npm install @clerk/nextjs
 npm install @radix-ui/react-icons
 ```
 
+[zustand](https://www.npmjs.com/package/zustand)
+```bash
+npm install zustand
+```
+
 ## Packages Backend
 [prisma](https://www.npmjs.com/package/prisma)
 ```bash
