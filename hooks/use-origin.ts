@@ -10,8 +10,8 @@ export const useOrigin = ()=> {
 
     const origin = typeof window !== "undefined" && window.location.origin ? window.location.origin : ""
 
-// get localhost:3000
-// console.log(window.location.origin);
+    // console.log(window.location.origin);
+    // => return localhost:3000
 
     if(!mounted) {
         return null;

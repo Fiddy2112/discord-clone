@@ -41,7 +41,7 @@ export const ServerHeader = ({server,role}:ServerHeaderProps)=> {
                 <Settings className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>
             }
-             {isAdmin && <DropdownMenuItem className="dark:hover:bg-indigo-600 dark:hover:text-white px-3 py-2 text-sm cursor-pointer">
+             {isAdmin && <DropdownMenuItem onClick={()=> onOpen("members",{server})} className="dark:hover:bg-indigo-600 dark:hover:text-white px-3 py-2 text-sm cursor-pointer">
                 Manager Members
                 <Users className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>}
