@@ -4,12 +4,9 @@ import * as z from 'zod';
 import { Dialog,DialogContent,DialogDescription,DialogTitle,DialogHeader } from "@/components/ui/dialog";
 import qs from 'query-string';
 import { useModal } from '@/hooks/use-modal-store';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { UserAvatar } from '@/components/user-avatar';
-import { Check, Copy, Gavel, Loader2, MoreVertical, RefreshCcw, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from 'lucide-react';
+import { Check, Gavel, Loader2, MoreVertical, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
 import { ServerWithMembersWithProfiles } from '@/types';
@@ -109,9 +106,9 @@ const onKick= async (memberId:string)=>{
                                 {server.profileId !== member.profileId && loadingId !== member.id && (
                                     <div className="ml-auto">
                                         <DropdownMenu>
-                                            <DropdownMenuSubTrigger>
+                                            <DropdownMenuTrigger>
                                                 <MoreVertical className='w-4 h-4 text-zinc-500'/>
-                                            </DropdownMenuSubTrigger>
+                                            </DropdownMenuTrigger>
                                             <DropdownMenuContent side='left'>
                                                 <DropdownMenuSub>
                                                     <DropdownMenuSubTrigger className='flex items-center'>
@@ -148,7 +145,7 @@ const onKick= async (memberId:string)=>{
                                         </DropdownMenu>
                                     </div>
                                 )}
-                                {loadingId !== member.id && (
+                                {loadingId === member.id && (
                                     <Loader2 className='w-4 h-4 ml-auto text-zinc-500 animate-spin'/>
                                 )}
                             </div>

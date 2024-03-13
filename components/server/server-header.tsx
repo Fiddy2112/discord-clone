@@ -45,7 +45,7 @@ export const ServerHeader = ({server,role}:ServerHeaderProps)=> {
                 Manager Members
                 <Users className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>}
-            {isModerator && <DropdownMenuItem className="dark:hover:bg-indigo-600 dark:hover:text-white px-3 py-2 text-sm cursor-pointer">
+            {isModerator && <DropdownMenuItem onClick={()=> onOpen("createChannel",{server})} className="dark:hover:bg-indigo-600 dark:hover:text-white px-3 py-2 text-sm cursor-pointer">
                 Create Channel
                 <PlusCircle className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>}
