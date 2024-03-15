@@ -109,7 +109,7 @@ const onKick= async (memberId:string)=>{
                                             <DropdownMenuTrigger>
                                                 <MoreVertical className='w-4 h-4 text-zinc-500'/>
                                             </DropdownMenuTrigger>
-                                            <DropdownMenuContent side='left'>
+                                            <DropdownMenuContent side='left' >
                                                 <DropdownMenuSub>
                                                     <DropdownMenuSubTrigger className='flex items-center'>
                                                         <ShieldQuestion className='w-4 h-4 mr-2'/>

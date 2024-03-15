@@ -10,11 +10,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FileUpload } from '@/components/file-upload';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useModal } from '@/hooks/use-modal-store';
 import { Checkbox } from "@/components/ui/checkbox"
 import { ChannelType } from '@prisma/client';
 import { Hash, Volume2 } from 'lucide-react';
+import { useRef, useState } from 'react';
+import qs from 'query-string';
 
 
 
@@ -23,7 +25,15 @@ import { Hash, Volume2 } from 'lucide-react';
 export const CreateChannelModal = ()=> {
 const {isOpen,onOpen,onClose,type} = useModal();
 
+const [checkType, setCheckType] =  useState<string | null>("");
+console.log(checkType);
+
+
+    
+
     const router = useRouter();
+
+    const params = useParams();
 
     const isModalOpen = isOpen && type === "createChannel";
 
@@ -51,7 +61,13 @@ const {isOpen,onOpen,onClose,type} = useModal();
 
     const onSubmit = async (values: z.infer<typeof formSchema>)=> {
         try{
-            await axios.post("/api/servers",values)
+            const url = qs.stringifyUrl({
+                url:"/api/channels",
+                query:{
+                    serverId:params?.serverid
+                }
+            })
+            await axios.post(url,values)
 
            form.reset();
            router.refresh();
@@ -65,6 +81,9 @@ const handleClose = ()=> {
    form.reset();
    onClose();
 }
+
+
+
    
     return(
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
@@ -86,37 +105,28 @@ const handleClose = ()=> {
                                 <FormItem>
                                     <FormLabel>Channel Type</FormLabel>
                                     <FormDescription>
-                                        <RadioGroup                   onValueChange={field.onChange}
+                                        <RadioGroup                   
+                                            onValueChange={field.onChange}
                                             defaultValue={field.value}>
-                                            <div className="flex py-2 px-3 bg-[#2b2d31] hover:bg-[#393c41]">
+                                            {Object.values(ChannelType).map((type,id) =>(
+                                                <div key={id} className="flex py-4 px-3 bg-[#2b2d31] hover:bg-[#393c41]">
                                                 <div className=" flex gap-1 w-[100%] items-center mr-2">
                                                     <Hash className='w-6 h-6 mr-2' />
                                                 <div className="flex flex-col">
-                                                    <div className="text-xl">Text</div>
-                                                    <div className="text-xs">Send messenger, image, GIFs, Emoji,...
+                                                    <div className="text-xl capitalize">{type.toLocaleLowerCase()}</div>
+                                                    <div className="text-xs">{
+                                                        type == 'TEXT' ? "Send messeger, image, GIFS, emoji,..." : type == "AUDIO" ? "send audio,..." : type == "VIDEO" ? "call,call video,..." : " "
+                                                    }
                                                     </div>
                                                 </div>
 
                                                 </div>
                                                        <div className="flex items-center">
-                                                            <RadioGroupItem className='' value="option-one" id="option-one" />
+                                                            <RadioGroupItem checked={checkType == type} onClick={()=>setCheckType(type)}  className='' value={type} id={type} />
                                                        </div>
                                             </div>
+                                            ))}
 
-                                            <div className="flex py-2 px-3">
-                                                <div className=" flex gap-1 w-[100%] items-center mr-2">
-                                                    <Volume2 className='w-6 h-6 mr-2' />
-                                                <div className="flex flex-col">
-                                                    <div className="text-xl">Audio</div>
-                                                    <div className="text-xs">Call, call video,...
-                                                    </div>
-                                                </div>
-
-                                                </div>
-                                                       <div className="flex items-center">
-                                                            <RadioGroupItem className='' value="option-one" id="option-one" />
-                                                       </div>
-                                            </div>
                                         </RadioGroup>
                                     
                                     </FormDescription>
