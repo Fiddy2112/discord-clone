@@ -19,16 +19,20 @@ import { useRef, useState } from 'react';
 import qs from 'query-string';
 
 
-
-
-
 export const CreateChannelModal = ()=> {
 const {isOpen,onOpen,onClose,type} = useModal();
 
 const [checkType, setCheckType] =  useState<string | null>("");
+
+const [checkState,setCheckState] = useState(false);
 console.log(checkType);
 
+console.log(checkState);
 
+
+const onChangeCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckState(e.target.checked);
+  };
     
 
     const router = useRouter();
@@ -109,7 +113,7 @@ const handleClose = ()=> {
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}>
                                             {Object.values(ChannelType).map((type,id) =>(
-                                                <div key={id} className="flex py-4 px-3 bg-[#2b2d31] hover:bg-[#393c41]">
+                                                <div  key={id} className={"flex py-4 px-3 bg-[#2b2d31] hover:bg-[#393c41] cursor-pointer"}>
                                                 <div className=" flex gap-1 w-[100%] items-center mr-2">
                                                     <Hash className='w-6 h-6 mr-2' />
                                                 <div className="flex flex-col">
@@ -122,7 +126,7 @@ const handleClose = ()=> {
 
                                                 </div>
                                                        <div className="flex items-center">
-                                                            <RadioGroupItem checked={checkType == type} onClick={()=>setCheckType(type)}  className='' value={type} id={type} />
+                                                       <RadioGroupItem  value={type} id={type} />
                                                        </div>
                                             </div>
                                             ))}

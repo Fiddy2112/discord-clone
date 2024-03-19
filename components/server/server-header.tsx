@@ -60,7 +60,7 @@ export const ServerHeader = ({server,role}:ServerHeaderProps)=> {
                 Delete Server
                 <Trash className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>}
-             {!isAdmin &&<DropdownMenuItem className="text-red-500 dark:text-red-500 dark:hover:bg-[#f23F42] dark:hover:text-white px-3 py-2 text-sm cursor-pointer">
+             {!isAdmin &&<DropdownMenuItem onClick={()=> onOpen("leaveServer",{server})} className="text-red-500 dark:text-red-500 dark:hover:bg-[#f23F42] dark:hover:text-white px-3 py-2 text-sm cursor-pointer">
                 Leave Server
                 <LogOut className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>}
